@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>Angular Drill</title>
+</head>
+
+<body>
+
+    <expenses>
+        <h1>Expenses</h1>
+
+        <form ng-submit="$ctrl.addExpense()">
+            <p>
+                Category: <input id="new-category">
+            </p>
+            <p>
+                Amount: <input id="new-amount">
+            </p>
+            <p>
+                <button action="/api/expenses" method="get" type="submit">Add Expense</button>
+            </p>
+        </form>
+        <items></items>
+
+        <form>
+            <p>
+                Category: <input id="edit-category">
+            </p>
+            <p>
+                Amount: <input id="edit-amount">
+            </p>
+
+            <p>
+
+                <button type="submit">Update Expense</button>
+            </p>
+
+        </form>
+    </expenses>
+
+    <script src="/angular/angular.min.js"></script>
+    <script src="/js/app.module.js"></script>
+    <script src="/js/expenses.component.js"></script>
+</body>
+
+</html>
+</body>
+
+</html>
