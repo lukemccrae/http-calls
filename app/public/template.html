@@ -1,20 +1,46 @@
+<form ng-submit="$ctrl.addExpense()">
+    <p>
+        Category: <input class="form-control" id="category" ng-model="$ctrl.category" name="category">
+    </p>
+    <p>
+        Amount: <input class="form-control" id="amount" ng-model="$ctrl.amount" name="amount">
+    </p>
+    <p>
+        <button type="submit" class="btn btn-primary">Add Expense</button>
+    </p>
+</form>
+
 <table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Category</th>
-      <th>Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="item in $ctrl.testObject">
-      <td>{{item.id}}</td>
-      <td>{{item.category}}</td>
-      <td>{{item.amount}}</td>
-      <td>
-        <a href="#">edit</a>
-        <a href="#">delete</a>
-      </td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="expense in $ctrl.expenses">
+            <td>{{expense.id}}</td>
+            <td>{{expense.category}}</td>
+            <td>{{expense.amount}}</td>
+            <td>
+                <a ng-click="$ctrl.updateExpenseForm(expense)" href="#">edit</a>
+                <a ng-click="$ctrl.deleteExpense(expense)" href="#">delete</a>
+            </td>
+        </tr>
+    </tbody>
 </table>
+
+<form ng-submit="$ctrl.submitUpdate()">
+    <p>
+        Category: <input ng-model="$ctrl.updateCategory" id="edit-category">
+    </p>
+    <p> Amount: <input ng-model="$ctrl.updateAmount" value="" id="edit-amount">
+    </p>
+
+    <p>
+
+        <button type="submit">Update Expense</button>
+    </p>
+
+</form>

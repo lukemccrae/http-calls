@@ -4,9 +4,10 @@ const bodyParser = require('body-parser')
 const app = express()
 
 if (process.env.NODE_ENV !== 'test') {
-  const logger = require('morgan')
-  app.use(logger('dev'))
+    const logger = require('morgan')
+    app.use(logger('dev'))
 }
+
 
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')))
@@ -15,21 +16,26 @@ app.use(express.static(path.join(__dirname, '/../', 'node_modules')))
 app.use('/api/expenses', require('./routes/expenses'))
 
 app.use('*', function(req, res, next) {
-  res.sendFile('index.html', {root: path.join(__dirname, 'public')})
+    res.sendFile('index.html', {
+        root: path.join(__dirname, 'public')
+    })
 })
 
 app.use(function(req, res, next) {
-  var err = new Error('Not Found')
-  err.status = 404
-  next(err)
+    var err = new Error('Not Found')
+    err.status = 404
+    next(err)
 })
 
+//added this to fix a bug
+
+
 app.use(function(err, req, res, next) {
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-  console.log(err)
-  res.status(err.status || 500)
-  res.json(err)
+    res.locals.message = err.message
+    res.locals.error = req.app.get('env') === 'development' ? err : {}
+    console.log(err)
+    res.status(err.status || 500)
+    res.json(err)
 })
 
 module.exports = app
